@@ -21,10 +21,10 @@ public class WindowEntity implements Serializable{
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "startTime")
+	@Column(name = "start_time")
 	private LocalTime startTime;
 	
-	@Column(name = "endTime")
+	@Column(name = "end_time")
 	private LocalTime endTime;
 
 	public Long getId() {
@@ -32,7 +32,7 @@ public class WindowEntity implements Serializable{
 	}
 
 
-	public LocalTime getStartTie() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
