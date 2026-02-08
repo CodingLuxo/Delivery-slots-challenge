@@ -16,10 +16,10 @@ En sistemas Unix/macOS:
 ```
 
 En Windows (CMD):
-
+```bash
 mvnw.cmd clean package
 mvnw.cmd spring-boot:run
-
+```
 
 ## Archivos de configuración
 
@@ -32,12 +32,14 @@ No obstante, se puede modificar este archivo sql para incluir más zonas geográ
 - Si desea ingresar a la GUI de la base de datos H2 para poder evidenciar la consistencia de los datos, puede hacerlo sin problemas dirigiéndose a la siguiente url  : `http://localhost:8080/h2-console`. 
 
 -Una vez dentro, debe seleccionar las siguientes opciones : 
-Saved Settings : Generic H2 (Embedded),
+```bash
+Saved Settings : Generic H2 (Embedded)
 Setting Name  :  Generic H2 (Embedded)
 Driver Class : org.h2.Driver
 JDBC URL: jdbc:h2:mem:testdb
 User Name: sa
 Password : (vacío)
+```
 
 -Al ingresar, podrá ver las 4 tablas creadas para este desafío (delivery_order, delivery_slots,geographic_zones y windows), donde podrá ejecutar las querys deseadas para efectos de verificar consistencia de datos. 
 
@@ -57,16 +59,16 @@ La API expone tres endpoints REST.
     ```
   - Ejemplo de respuesta : 
 ```json
-[{
-  "id": "1",
-  "township": "Santiago",
-  "area": "Región Metropolitana"
-},
-{ 
-   "id": "2",
-  "township": "Valdivia",
-  "area": "Región de los ríos"
-}]
+    [{
+      "id": "1",
+      "township": "Santiago",
+      "area": "Región Metropolitana"
+    },
+    { 
+      "id": "2",
+      "township": "Valdivia",
+      "area": "Región de los ríos"
+    }]
 ```
 
 - **Obtener franjas horarias de entrega (delivery slots) por zona y rango de fechas**
@@ -86,46 +88,46 @@ La API expone tres endpoints REST.
 
   - Ejemplo de respuesta : 
 ```json
-{
-   "2026-02-09": [
-    {
-      "id": 11,
-      "start": "09:00:00",
-      "end": "11:00:00",
-      "availability": 5,
-      "price": 4500
-    },
-    {
-      "id": 12,
-      "start": "10:00:00",
-      "end": "12:00:00",
-      "availability": 10,
-      "price": 4500
-    },
-    {
-      "id": 13,
-      "start": "11:00:00",
-      "end": "13:00:00",
-      "availability": 10,
-      "price": 4500
-    }],
-    "2026-02-10": [
-    {
-      "id": 45,
-      "start": "09:00:00",
-      "end": "11:00:00",
-      "availability": 30,
-      "price": 4500
-    },
-    {
-      "id": 46,
-      "start": "10:00:00",
-      "end": "12:00:00",
-      "availability": 10,
-      "price": 4500
-    }]
+      {
+        "2026-02-09": [
+          {
+            "id": 11,
+            "start": "09:00:00",
+            "end": "11:00:00",
+            "availability": 5,
+            "price": 4500
+          },
+          {
+            "id": 12,
+            "start": "10:00:00",
+            "end": "12:00:00",
+            "availability": 10,
+            "price": 4500
+          },
+          {
+            "id": 13,
+            "start": "11:00:00",
+            "end": "13:00:00",
+            "availability": 10,
+            "price": 4500
+          }],
+          "2026-02-10": [
+          {
+            "id": 45,
+            "start": "09:00:00",
+            "end": "11:00:00",
+            "availability": 30,
+            "price": 4500
+          },
+          {
+            "id": 46,
+            "start": "10:00:00",
+            "end": "12:00:00",
+            "availability": 10,
+            "price": 4500
+          }]
 
-}
+      }
 ```
 - **Crear pedido de entrega (place delivery order)**
 
@@ -143,9 +145,9 @@ La API expone tres endpoints REST.
 
       - Ejemplo de respuesta : 
 ```json
-{
-  "orderId" : "574ccb86-2335-46da-9fe1-cc3266c1af74"
-}
+      {
+        "orderId" : "574ccb86-2335-46da-9fe1-cc3266c1af74"
+      }
 ```
 
 ## Potenciales Errores
