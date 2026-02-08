@@ -29,4 +29,8 @@ public class GeographicZoneDao {
 		
 		return response;
 	}
+	
+	public boolean isAValidGeographicZone(Long geographicZoneId) {
+		return this.geographicZoneRepository.existsById(geographicZoneId);
+	}
 }

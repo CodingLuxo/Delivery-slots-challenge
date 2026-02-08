@@ -8,6 +8,9 @@ import com.walmart.deliveryslot.domain.dao.DeliveryOrderDao;
 import com.walmart.deliveryslot.domain.dao.DeliverySlotDao;
 import com.walmart.deliveryslot.domain.model.dto.DeliveryOrderDto;
 import com.walmart.deliveryslot.domain.model.entity.DeliverySlotEntity;
+import com.walmart.deliveryslot.domain.model.exceptions.DeliverySlotsChallengeException;
+import com.walmart.deliveryslot.domain.model.exceptions.ResourceNotFoundException;
+import com.walmart.deliveryslot.domain.model.exceptions.UnavailableSlotException;
 import com.walmart.deliveryslot.domain.service.DeliveryOrderService;
 
 import jakarta.transaction.Transactional;
@@ -25,15 +28,15 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	
 	@Override
 	@Transactional
-	public String placeDeliveryOrder(DeliveryOrderDto order) {
+	public String placeDeliveryOrder(DeliveryOrderDto order) throws DeliverySlotsChallengeException {
 		DeliverySlotEntity slot = this.deliverySlotDao.findSlotById(order.deliverySlotId());
 		
 		if(Objects.isNull(slot)) {
-			throw new RuntimeException("Slot no válido");
+			throw new ResourceNotFoundException("El bloque horario" + order.deliverySlotId() +"no es válido");
 		}
 		
 		if(slot.isUnavailable()) {
-			throw new RuntimeException("Ya se agotaron las reservas para este horario, intenta en otro horario");
+			throw new UnavailableSlotException("Ya se agotaron las reservas para este horario, por favor, intente nuevamente en otro bloque horario");
 		}
 		
 		final String orderId = this.deliveryOrderDao.placeDeliveryOrder(order, slot);

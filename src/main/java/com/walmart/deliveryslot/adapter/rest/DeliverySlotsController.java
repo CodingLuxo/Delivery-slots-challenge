@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.walmart.deliveryslot.domain.model.dto.DeliverySlotsDto;
+import com.walmart.deliveryslot.domain.model.exceptions.DeliverySlotsChallengeException;
 import com.walmart.deliveryslot.domain.service.DeliverySlotService;
 
 @RestController
@@ -24,7 +25,7 @@ public class DeliverySlotsController {
 	@GetMapping(value = "geographic-zone/{geographicZoneId}")
 	public Map<LocalDate, List<DeliverySlotsDto>> getGeographicZoneDeliverySlotsByDateBetween(
 			@PathVariable Long geographicZoneId,
-			@RequestParam String dateFrom, @RequestParam String dateTo){
+			@RequestParam String dateFrom, @RequestParam String dateTo) throws DeliverySlotsChallengeException{
 		return this.deliverySlotService.findDeliverySlotsByGeographicZoneAndRange(geographicZoneId, LocalDate.parse(dateFrom), LocalDate.parse(dateTo));
 	}
 }
