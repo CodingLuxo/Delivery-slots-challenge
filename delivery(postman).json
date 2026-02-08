@@ -1,0 +1,85 @@
+{
+  "info": {
+    "name": "delivery",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "bruno",
+      "event": []
+    },
+    {
+      "name": "Retrieve Geographic Zones",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "{{HOST}}/geographic-zones",
+          "host": [],
+          "path": [],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Check Delivery Slots",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "{{HOST}}/delivery-slots/geographic-zone/1?dateFrom=2026-02-10&dateTo=2026-02-16",
+          "host": [],
+          "path": [],
+          "query": [
+            {
+              "key": "dateFrom",
+              "value": "2026-02-10"
+            },
+            {
+              "key": "dateTo",
+              "value": "2026-02-16"
+            }
+          ],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Place order",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "{{HOST}}/delivery-order",
+          "host": [],
+          "path": [],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"clientName\": \"Pepito\",\n  \"clientAddress\" : \"Bernardo Ohiggins,123\",\n  \"deliverySlotId\" : 50\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "HOST",
+      "value": "http://localhost:8080",
+      "type": "default"
+    }
+  ]
+}

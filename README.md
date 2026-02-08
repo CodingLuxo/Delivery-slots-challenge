@@ -154,3 +154,7 @@ La API expone tres endpoints REST.
 - En caso de que el proyecto no compile, asegúrese de que `JAVA_HOME` apunte al JDK y que la versión de Java sea compatible.
 - Si obtiene errores al parsear fechas en el endpoint de `delivery-slots`, revise que los parámetros `dateFrom` y `dateTo` tengan el formato `YYYY-MM-DD`.
 
+## Collections 
+
+- Se incorporaron 2 archivos `delivery.json` para facilitar el consumo de la API.  (Bruno y Postman). 
+
