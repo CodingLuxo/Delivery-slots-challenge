@@ -1,4 +1,4 @@
-package com.walmart.deliveryslot.adapter.dao;
+package com.walmart.deliveryslot.adapter.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

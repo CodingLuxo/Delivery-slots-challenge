@@ -3,9 +3,11 @@ package com.walmart.deliveryslot.domain.model.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,11 +27,11 @@ public class DeliverySlotEntity implements Serializable  {
 	private Long id;
 	
 	@JoinColumn(name = "geographic_zone_id",referencedColumnName = "id")
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false,fetch = FetchType.EAGER)
 	private GeographicZoneEntity geographicZone;
 	
 	@JoinColumn(name = "window_id",referencedColumnName = "id")
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false,fetch = FetchType.EAGER)
 	private WindowEntity window;
 	
 	@Column(name = "delivery_date",nullable = false)
@@ -64,6 +66,10 @@ public class DeliverySlotEntity implements Serializable  {
 	public BigDecimal getPrice() {
 		return price;
 	}
+	
+	public void decrementAvailability() {
+		availability = availability - 1;
+	}
 
 	@Override
 	public String toString() {
@@ -71,6 +77,18 @@ public class DeliverySlotEntity implements Serializable  {
 				+ deliveryDate + ", availability=" + availability + ", price=" + price + "]";
 	}
 	
+	public boolean hasAValidWindow() {
+		final LocalTime now = LocalTime.now();
+		final LocalDate today = LocalDate.now();
+		if(today.isBefore(deliveryDate)) return true;
+		if(today.isAfter(deliveryDate)) return false;
+		
+		//Same day here, so verification of time proceeds.
+		return now.isBefore(window.getStartTime());
+	}
 	
 	
+	public boolean isUnavailable() {
+		return availability < 1;
+	}
 }

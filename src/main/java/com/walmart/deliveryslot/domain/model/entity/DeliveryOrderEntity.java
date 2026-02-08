@@ -3,6 +3,7 @@ package com.walmart.deliveryslot.domain.model.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -47,6 +49,9 @@ public class DeliveryOrderEntity implements Serializable {
 	
 	@Column(name = "delivery_price")
 	private BigDecimal deliveryPrice;
+	
+	@Column(name = "date_created")
+	private LocalDateTime dateCreated;
 
 	public UUID getId() {
 		return this.id;
@@ -105,6 +110,11 @@ public class DeliveryOrderEntity implements Serializable {
 
 	public void setDeliveryPrice(BigDecimal deliveryPrice) {
 		this.deliveryPrice = deliveryPrice;
+	}
+	
+	@PrePersist
+	void prePersist() {
+		this.dateCreated = LocalDateTime.now();
 	}
 	
 	@Override
