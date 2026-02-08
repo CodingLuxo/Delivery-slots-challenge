@@ -29,7 +29,7 @@ No obstante, se puede modificar este archivo sql para incluir más zonas geográ
 
 ## Verificar Base de datos 
 
-- Si desea ingresar a la GUI de la base de datos H2 para poder evidenciar la consistencia de los datos, puede hacerlo sin problemas dirigiéndose a la siguiente url  : `http://localhost:8080/h2-console`. 
+- Si desea ingresar a la GUI de la base de datos H2 para poder evidenciar la consistencia de los datos, puede hacerlo sin problemas dirigiéndose a la siguiente url  : `http://localhost:8080/h2-console` (mientras el proyecto se encuentre en ejecución). 
 
 -Una vez dentro, debe seleccionar las siguientes opciones : 
 ```bash
