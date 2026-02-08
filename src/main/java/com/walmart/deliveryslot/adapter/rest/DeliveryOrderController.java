@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.walmart.deliveryslot.domain.model.dto.DeliveryOrderDto;
+import com.walmart.deliveryslot.domain.model.dto.OrderPlacedDto;
 import com.walmart.deliveryslot.domain.model.exceptions.DeliverySlotsChallengeException;
 import com.walmart.deliveryslot.domain.service.DeliveryOrderService;
 
@@ -22,7 +23,7 @@ public class DeliveryOrderController {
 	
 	@PostMapping()
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public String placeDeliveryOrder(@RequestBody DeliveryOrderDto order) throws DeliverySlotsChallengeException {
+	public OrderPlacedDto placeDeliveryOrder(@RequestBody DeliveryOrderDto order) throws DeliverySlotsChallengeException {
 		return this.deliveryOrderService.placeDeliveryOrder(order);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
+import com.walmart.deliveryslot.application.util.Messages;
 import com.walmart.deliveryslot.domain.dao.DeliverySlotDao;
 import com.walmart.deliveryslot.domain.dao.GeographicZoneDao;
 import com.walmart.deliveryslot.domain.model.dto.DeliverySlotsDto;
@@ -53,7 +54,7 @@ public class DeliverySlotServiceImpl implements DeliverySlotService {
 	private void validateGeographicZone(Long geographicZone) throws ResourceNotFoundException {
 		final boolean validatedZone = this.geographicZoneDao.isAValidGeographicZone(geographicZone);
 		if(!validatedZone) {
-			throw new ResourceNotFoundException("No se ha encontrado una zona geográfica asociada al id : " + geographicZone);  
+			throw new ResourceNotFoundException(Messages.notValidGeoZoneMessage(geographicZone));  
 		}
 	}
 
